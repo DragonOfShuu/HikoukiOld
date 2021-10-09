@@ -24,7 +24,8 @@ module.exports = {
       })
     } else {
       if (client.commands.get(args[0])) {
-        msg.channel.send("that was a command!")
+        //msg.channel.send("that was a command!");
+        msg.channel.send(client.commands.get(args[0]).description);
       } else {
         msg.channel.send("that was not a command!")
       }
