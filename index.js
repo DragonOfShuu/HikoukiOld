@@ -34,7 +34,7 @@ const mySecret = process.env['BOT_LOGIN']
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setActivity('ASMR~~', {type: "STREAMING"})
+  client.user.setActivity('Mukbang~~~', {type: "STREAMING"})
 });
 
 client.once('reconnecting', () => {
