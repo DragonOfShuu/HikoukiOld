@@ -34,7 +34,27 @@ const mySecret = process.env['BOT_LOGIN']
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setActivity('Mukbang~~~', {type: "STREAMING"})
+  const activities = [
+    "ASMR~~",
+    "mukbang challenge!",
+    "with catgirls~~",
+    "with senpai~",
+    "@DragonOfShuu#1119 code~",
+    "with new magic cards"
+  ];
+  const tActivities = [
+    "STREAMING",
+    "WATCHING",
+    "PLAYING",
+    "STREAMING",
+    "WATCHING",
+    "PLAYING"
+  ]
+  //console.log(Object.keys(activities)[2])
+  let i = 0;
+  setInterval(() =>{
+    client.user.setActivity(`${activities[i++ % activities.length]}`, {type: `${tActivities[i-1]}`});
+  }, 150000);
 });
 
 client.once('reconnecting', () => {
@@ -90,8 +110,6 @@ client.on('message', msg => {
           CommandsArray[CommandsArray.aliases[command]].execute(msg, args, client)
         }
       } catch (error) {
-        msg.channel.send(`An error occured: \n${error}`)
-
         const errDetails = {
           "user": msg.author,
           "error": error
@@ -99,8 +117,11 @@ client.on('message', msg => {
 
         console.log(`Error Details:`)
         console.log(errDetails)
-        if (msg.author == "579360877208403978") {
+        if (msg.author == process.env['Creator']) {
+          msg.channel.send(`An error occured: \n${error}`)
           msg.channel.send(`You got this ${msg.author}! I beweive in u!`)
+        } else {
+          msg.channel.send("```*An internal server error occurred*```")
         }
       }
       
@@ -113,7 +134,6 @@ client.on('message', msg => {
     } else {
       //msg.channel.send(["music", "m"].indexOf(command))
       msg.channel.send(`Sorry, ${msg.author}, that was not a command :woozy_face:`)
-      
     }
     
   }

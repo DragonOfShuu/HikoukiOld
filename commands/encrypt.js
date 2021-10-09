@@ -3,11 +3,13 @@ module.exports = {
   description: "This allows you to encrypt messages\n\nSyntax: ^encrypt <text>",
   execute(msg, args, client) {
     const randNum = require('./Utilities/randNum.js');
+    
     //let allPos = "abcdefghijklmnopqrstuvwxyz 1234567890.,"
     let text = "";
     for (let i=0; i<args.length; i++) {
       text = text + args[i]
     }
+    console.log(`Running encrypt: ${text}`)
 
     if (!args.length) {
       msg.channel.send("I can't encrypt nothing silly :P");
@@ -28,6 +30,16 @@ module.exports = {
       }
       
     }
-    msg.delete()
+    console.log(`${msg.channel.type}`)
+    console.log(`${msg.channel.type == "dm"}`)
+    if (msg.channel.type != "dm") {
+      try {
+        console.log("trying...")
+        msg.delete()
+      } catch (e) {
+        console.log("Not allowed to delete message...")
+      }
+    }
+
   }
 }
