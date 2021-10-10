@@ -7,7 +7,7 @@ module.exports = {
     //let allPos = "abcdefghijklmnopqrstuvwxyz 1234567890.,"
     let text = "";
     for (let i=0; i<args.length; i++) {
-      text = text + args[i]
+      text = text + args[i] + " ";
     }
     console.log(`Running encrypt: ${text}`)
 
@@ -30,11 +30,8 @@ module.exports = {
       }
       
     }
-    console.log(`${msg.channel.type}`)
-    console.log(`${msg.channel.type == "dm"}`)
     if (msg.channel.type != "dm") {
       try {
-        console.log("trying...")
         msg.delete()
       } catch (e) {
         console.log("Not allowed to delete message...")
