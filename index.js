@@ -4,17 +4,20 @@ const fs = require("fs");
 const filMan = require("./commands/Utilities/FilMan.js");
 const mcpath = "./commands/Saves/MusicChannels.json";
 const queue = new Map();
+require('dotenv').config();
 
 //const { prefix, token } = require('./config.json');
 let Prefix = "^"
 
 //console.log(fs)
 
+/*
 function clrMC() {
   filMan(mcpath, 'w', {"thing":"another thing"})
 }
 
 clrMC()
+*/
 
 client.commands = new Discord.Collection();
 
@@ -29,8 +32,8 @@ for (const file of commandFiles) {
 }
 
 
-const mySecret = process.env['BOT_LOGIN']
 
+const mySecret = process.env.BOT_LOGIN;
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -50,6 +53,7 @@ client.on('ready', () => {
     "WATCHING",
     "PLAYING"
   ]
+  
   //console.log(Object.keys(activities)[2])
   let i = 0;
   setInterval(() =>{
@@ -93,6 +97,7 @@ client.on('message', msg => {
       "help": cc.get("help"),
       "test": cc.get("testTest"),
       "encrypt": cc.get("encrypt"),
+      "say": client.commands.get("say"),
       aliases: {
         'p': 'purge',
         'h': 'help',
@@ -105,6 +110,7 @@ client.on('message', msg => {
     if (CommandsArray[command] || CommandsArray[CommandsArray.aliases[command]]) {
       try {
         try {
+          /*console.log(CommandsArray[command]);*/
           CommandsArray[command].execute(msg, args, client)
         } catch {
           CommandsArray[CommandsArray.aliases[command]].execute(msg, args, client)
@@ -117,7 +123,7 @@ client.on('message', msg => {
 
         console.log(`Error Details:`)
         console.log(errDetails)
-        if (msg.author == process.env['Creator']) {
+        if (msg.author == process.env.Creator) {
           msg.channel.send(`An error occured: \n${error}`)
           msg.channel.send(`You got this ${msg.author}! I beweive in u!`)
         } else {
@@ -135,10 +141,9 @@ client.on('message', msg => {
       //msg.channel.send(["music", "m"].indexOf(command))
       msg.channel.send(`Sorry, ${msg.author}, that was not a command :woozy_face:`)
     }
-    
   }
 });
 
 //console.log(process.env);
-console.log("Is attempting to run")
+console.log("Is attempting to run");
 client.login(mySecret);

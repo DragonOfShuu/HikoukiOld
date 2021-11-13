@@ -1,6 +1,6 @@
 module.exports = {
   name: 'kiss',
-  description: 'kiss another user!\n\nSyntax: ^kiss <OtherUser>',
+  description: 'kiss another user!\n^kiss <text: *required*>',
   execute(msg, arg) {
     rand = require("./Utilities/randNum.js")
     console.log("Ran Kiss Command...")
@@ -30,7 +30,10 @@ module.exports = {
       "https://i.pinimg.com/originals/e5/eb/4d/e5eb4d30d233cbefd96619559b8daf8a.gif",
       "https://i1.wp.com/www.n2anime.com/wp-content/uploads/2017/06/Kotonoha-kisses-Makoto-School-Days-Anime.gif.gif",
       "https://media1.tenor.com/images/8cde94c42f3607101685a813972d0862/tenor.gif",
-      "https://64.media.tumblr.com/d05a60d9b37db0760bc84140a9a4e28a/tumblr_n3xxegbEG91s684e6o1_500.gif"
+      "https://64.media.tumblr.com/d05a60d9b37db0760bc84140a9a4e28a/tumblr_n3xxegbEG91s684e6o1_500.gif",
+      "https://tenor.com/view/kissing-anime-kiss-couple-gif-20604037",
+      "https://tenor.com/view/highschool-dxd-asia-issei-kiss-tiptoe-gif-6206552",
+      
     ]
 
     const num = rand(0, gifs.length)

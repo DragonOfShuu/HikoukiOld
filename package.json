@@ -6,9 +6,9 @@
   "dependencies": {
     "@discordjs/opus": "github:discordjs/opus",
     "discord.js": "^12.5.3",
+    "dotenv": "^10.0.0",
     "ytdl-core": "^4.9.1"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

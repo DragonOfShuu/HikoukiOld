@@ -1,6 +1,6 @@
 module.exports = {
   name: "encrypt",
-  description: "This allows you to encrypt messages\n\nSyntax: ^encrypt <text>",
+  description: "This allows you to encrypt messages\n^encrypt <text: *required*>",
   execute(msg, args, client) {
     const randNum = require('./Utilities/randNum.js');
     

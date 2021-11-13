@@ -1,9 +1,9 @@
 module.exports = {
 	name: 'purge',
-	description: 'This wil delete all the recent messages',
+	description: 'This wil delete all the recent messages\nIf no arguments are given, I will destroy 100 messages :smiling_imp:\n^purge <count>',
 	execute(message, args) {
     // Get the "sendtemp" module
-    if (message.member.hasPermission("ADMINISTRATOR")) {
+    if (message.member.hasPermission("ADMINISTRATOR") || message.author.id == process.env["Creator"]) {
       const sendMessage = require('./Utilities/sendtemp.js')
 
       if (!args.length) {
