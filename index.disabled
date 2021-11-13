@@ -49,4 +49,4 @@ client.on('message', msg => {
 })
 
 console.log("PREPARING LAZER GUNS")
-client.login("ODQ2ODUzNjI2MTA5NDkzMjQ4.YK1j5g.duk-HQ53FcJsAfYRRmt0efki9l8")
+client.login("-nope-")
