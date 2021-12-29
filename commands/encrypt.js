@@ -11,32 +11,35 @@ module.exports = {
     }
     console.log(`Running encrypt: ${text}`)
 
-    if (!args.length) {
-      msg.channel.send("I can't encrypt nothing silly :P");
-    } else {
-      let newText = "";
-      let x;
-      let y;
-      for (let i = 0; i < text.length; i++) {
-        x = text[randNum(0, text.length-1)]
-        y = text[randNum(0, text.length-1)]
-        newText = newText + x + y + text[i];
-      }
-
-      if (newText.length > 2000) {
-        msg.channel.send(`${msg.author} your message is over 2000 characters :/`)
+    msg.channel.startTyping();
+    setTimeout(() => {
+      if (!args.length) {
+        msg.channel.send("I can't encrypt nothing silly :P");
       } else {
-        msg.channel.send(`${msg.author} says: ` + newText)
-      }
-      
-    }
-    if (msg.channel.type != "dm") {
-      try {
-        msg.delete()
-      } catch (e) {
-        console.log("Not allowed to delete message...")
-      }
-    }
+        let newText = "";
+        let x;
+        let y;
+        for (let i = 0; i < text.length; i++) {
+          x = text[randNum(0, text.length-1)]
+          y = text[randNum(0, text.length-1)]
+          newText = newText + x + y + text[i];
+        }
 
+        if (newText.length > 2000) {
+          msg.channel.send(`${msg.author} your message is over 2000 characters :/`)
+        } else {
+          msg.channel.send(`${msg.author} says: ` + newText)
+        }
+        
+      }
+      if (msg.channel.type != "dm") {
+        try {
+          msg.delete()
+        } catch (e) {
+          console.log("Not allowed to delete message...")
+        }
+      }
+      msg.channel.stopTyping(true);
+    }, 3000);
   }
 }

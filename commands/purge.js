@@ -8,7 +8,11 @@ module.exports = {
 
       if (!args.length) {
         message.channel.bulkDelete(100, true).then(messages => {
-          sendMessage(message.channel, messages.size + ' messages successfully crashed and burned :hugging:', 4);
+          try {
+            sendMessage(message.channel, messages.size + ' messages successfully crashed and burned :hugging:', 4);
+          } catch (e) {
+            console.log(`I don't have access to message in that channel, but it is fine. ${e}`);
+          }
         })
         
       } else if (parseInt(args[0])) {
@@ -19,21 +23,21 @@ module.exports = {
           );
         } else {
           message.channel.bulkDelete((num + 1), true).then(messages => {
-            sendMessage(message.channel, messages.size + ' messages successfully crashed and burned :hugging:', 4);
+            try {
+              sendMessage(message.channel, messages.size + ' messages successfully crashed and burned :hugging:', 4);
+            } catch (e) {
+              console.log(`I couldn't message in that channel, but it's fine ${e}`);
+            }
           })
-          
-
-          // var msg = message.channel.messages.fetch({ limit: 2 });
-          // setTimeout(function() {
-          //   console.log(msg);
-          // 	msg.delete();
-            
-          // }, 5000);
         }
 
       }
     } else {
-      message.channel.send("You do not have permission to run this command, sorry :/")
+      try {
+        message.channel.send("You do not have permission to run this command, sorry :/")
+      } catch (e) {
+        console.log(`I couldn't message in that channel, but it's fine ${e}`);
+      }
     }
 	}
 };

@@ -39,7 +39,7 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
   const activities = [
     "ASMR~~",
-    "mukbang challenge!",
+    "the mukbang challenge!",
     "with catgirls~~",
     "with senpai~",
     "@DragonOfShuu#1119 code~",
@@ -54,6 +54,8 @@ client.on('ready', () => {
     "PLAYING"
   ]
   
+  client.user.setActivity(`just started up!`, {type: `PLAYING`});
+
   //console.log(Object.keys(activities)[2])
   let i = 0;
   setInterval(() =>{
@@ -124,10 +126,20 @@ client.on('message', msg => {
         console.log(`Error Details:`)
         console.log(errDetails)
         if (msg.author == process.env.Creator) {
-          msg.channel.send(`An error occured: \n${error}`)
-          msg.channel.send(`You got this ${msg.author}! I beweive in u!`)
+          try {
+            msg.channel.send(`An error occured: \n${error}`)
+            msg.channel.send(`You got this ${msg.author}! I beweive in u!`)
+          } catch {
+            console.log(`An error occured: \n${error}`);
+            console.log(`You got this ${msg.author}! I beweive in u!`);
+          }
         } else {
-          msg.channel.send("```*An internal server error occurred*```")
+          try {
+            msg.channel.send("```*An internal server error occurred*```");
+            console.log(`Here was a caught error: ${error}`);
+          } catch (e) {
+            console.log(`Here was a caught error: ${error}`);
+          }
         }
       }
       
@@ -135,7 +147,7 @@ client.on('message', msg => {
       //cc.get("music").execute(msg, args, client, queue);
       msg.channel.send("Sorry, my creator Dragon of Shuu decided to archive this command. :sob:\n:(((((");
 
-      console.log(queue)
+      //console.log(queue)
       //if (newQueue) {queue = newQueue}
     } else {
       //msg.channel.send(["music", "m"].indexOf(command))

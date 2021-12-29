@@ -4,6 +4,7 @@ module.exports = {
   execute(msg, args, client) {
     const Creator = process.env['Creator']
     const cc = client.commands;    
+    /*https://discord.com/api/oauth2/authorize?client_id=846853626109493248&permissions=309241179200&scope=bot*/
 
     //msg.channel.send("Working... :grin:")
 
@@ -15,19 +16,22 @@ module.exports = {
         }
 
         x += `Hello ${msg.author}! Here are the commands:\n`
-
+        
+        x += "```";
         cc.forEach((command, index) => {
           if (command.name) {
             x += `${command.name}: ${command.description}\n\n`
           }
         })
+        x += "```";
+        x += "\nTo Add Hikouki onto *your* server, click this:\nhttps://discord.com/api/oauth2/authorize?client_id=846853626109493248&permissions=309241179200&scope=bot";
         
-        dmchannel.send(x)
+        dmchannel.send(x);
       })
     } else {
       if (client.commands.get(args[0])) {
         //msg.channel.send("that was a command!");
-        msg.channel.send(client.commands.get(args[0]).description);
+        msg.channel.send("```" + client.commands.get(args[0]).description + "```");
       } else {
         msg.channel.send("that was not a command!")
       }
